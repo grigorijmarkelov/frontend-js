@@ -17,16 +17,14 @@
 				}
 				});
 				$.getJSON("quotes.json", function(result) {
-					$.each(result, function(key, val) {
-
-					var quote = val;
-					var author = key;
-				//	var count = Math.floor(Math.random()*result.length);
-					$("h1").text(quote);
-					$("p").text(author);
+					var count = Object.keys(result).length;
+					var index = Math.floor(Math.random()*count);
+					var quote = Object.values(result);
+					var author = Object.keys(result);
+					$("h1").text(quote[index]);
+					$("p").text(author[index]);
 					});
 	    			});
-	  		});
 		});
 	</script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -36,6 +34,6 @@
 			 <div class="container" align="center">							<i class="fa fa-quote-left" aria-hidden="true"></i>
 			        <h1>Text</h1>									<i class="fa fa-quote-right" aria-hidden="true"></i>			
 				<p align="right">Author</p>					          </div>							        <div class="container">
-		    <a href="https://twitter.com/share" class="twitter-share-button" data-size="large" data-show-count="false">Tweet</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>					            <button id="getQuote" class="btn btn-primary"  align="right">Next quote</button>					</div>
+				<a href="https://twitter.com/share" class="twitter-share-button" data-size="large" data-show-count="true"><img src="/home/grigoriymarkelov/Загрузки/Twitter_Logo_Blue/Twitter_Logo_Blue.png" height=60px width=60px></a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>					            <button id="getQuote" class="btn btn-primary"  align="right">Next quote</button>					</div>
 	</div>								        </div>										</body>
 </html>
