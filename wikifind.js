@@ -1,3 +1,6 @@
+$('.wiki-random').click(function() {
+	window.open("https://en.wikipedia.org/wiki/Special:Random");
+});
 function searchToggle(obj,evt) {
 	var container = $(obj).closest('.search-wrapper');
 	if(!container.hasClass('active')) {
@@ -13,18 +16,37 @@ function searchToggle(obj,evt) {
 			$(this).empty();});
 	}
 }
-
+function wikiPosition() {
+		$('.wiki').addClass('wiki-enter').removeClass('wiki');
+}
+function wikiSearch() {
+	$.ajax({
+		url:"https://en.wikipedia.org/w/api.php?",
+		dataType: "jsonp",
+		data: {
+			'action': "opensearch",
+			'format': "json",
+			 'search': $('.search-input').val()
+		},
+		success: function(data) {
+			var html = "";
+			var str = "";
+			for (i=0;i<data[1].length;i++) {
+				str = "<div class='entry well'><a href="+
+					data[3][i]+"><h3>"+data[1][i]+
+					"</h3><p>"+data[2][i]+"</p></a></div>";
+				html = html+str;
+			}
+			$('.content').html(html);
+		}
+	});
+}
 function submitFn(obj, evt) {
 	value = $(obj).find('.search-input').val().trim();
-	_html = "Your search text is this: ";
-	if(!value.length){
-		_html = "Add some text ";
-	} else {
-		_html += "<b>" + value + "</b>";
-	}
-	$(obj).find('.result-container').html('<span>' + _html + '</span>');
-	$(obj).find('.result-container').fadeIn(100);
-
+	wikiPosition();
+	wikiSearch();
+	$('h3').hide();
+	
 	evt.preventDefault();
 }
 

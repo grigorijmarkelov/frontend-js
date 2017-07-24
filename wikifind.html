@@ -17,9 +17,9 @@ a {
 	</head>
 	<body>
 		<div class="container" align="center">
-			<h1>&nbsp;</h1>
-			<h1>&nbsp;</h1>
-			<a href="https://en.wikipedia.org/wiki/Special:Random">Click here for a random article</a>
+			<div class="wiki-random">
+				<h3>Random Wiki Article</h3>
+			</div>
 			<form onsubmit="submitFn(this, event);">
 				<div class="search-wrapper">
 					<div class="input-holder">
@@ -29,6 +29,7 @@ a {
 					<span class="close" onclick="searchToggle(this, event);"></span>
 					<div class="result-container">
 					</div>
+					<div class="content"></div>
 				</div>
 			</form>
 		</div>
